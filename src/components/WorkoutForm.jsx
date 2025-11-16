@@ -30,19 +30,19 @@ const WorkoutForm = ({ stored }) => {
 
   return (
     <form
-      className="flex flex-col justify-center items-center gap-2 p-2 shadow-xl"
+      className="flex flex-col justify-center items-center gap-2 p-2 shadow-xl rounded-2xl"
       onSubmit={handleSubmit}
     >
-      <label htmlFor="day">Day:</label>
+      
       <select value={formData.day} name="day" onChange={handleChange} required>
-        <option value={""}>Select today</option>
+        <option value={""}>Select a day</option>
         {daysOfWeek.map((day) => (
           <option key={day} value={day.toLocaleLowerCase()}>
             {day}
           </option>
         ))}
       </select>
-      <label htmlFor="name">Workout Name: </label>
+      <label htmlFor="name">Workout Type: </label>
       <input
         className="bg-gray-100 w-1/2 p-1"
         type="text"
@@ -51,7 +51,7 @@ const WorkoutForm = ({ stored }) => {
         onChange={handleChange}
         required
       />
-      <label htmlFor="punds">Pounds </label>
+      <label htmlFor="punds">Weight amount: </label>
       <input
         className="bg-gray-100 w-1/2 p-1"
         type="text"

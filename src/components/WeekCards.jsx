@@ -5,15 +5,15 @@ const WeekCards = ({ workouts, deleteHandler }) => {
         workouts.map((workout) => (
           <div
             key={workout.id}
-            className="card-body text-center text-lg shadow-2xl bg-white p-2"
+            className="card-body text-center text-lg shadow-2xl bg-white p-2  rounded-2xl"
           >
             <button
-              className="btn btn-error w-fit hover:bg-red-600"
+              className="btn btn-ghost w-fit hover:bg-red-300 hover:text-white rounded-lg"
               onClick={() => deleteHandler(workout.id)}
             >
               X
             </button>
-            <p className="font-bold">{workout.day.toUpperCase()}</p>
+            <p className="font-bold capitalize">{workout.day}</p>
             <p>Workout Name: {workout.name} </p>
             <p>Weight: {parseFloat(workout.pounds) || 0}</p>
           </div>
