@@ -1,38 +1,25 @@
-"use client";
 
 
-const WeekCards = ({workout}) => {
-
-
-console.log(workout.map(name => name.name))
-  const daysOfWeek = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-  ];
-
+const WeekCards = ({workouts, deleteHandler}) => {
 
 
 
   return (
     <div className="card bg-base-100 grid grid-cols-3 md:col-span-2 gap-2 p-2">
-      {daysOfWeek.map(
-        (day, i) =>
-          day && (
+      {workouts.length > 0 && workouts.map(
+        (workout) =>
+          
             <div
-              key={i}
+              key={workout.id}
               className="card-body text-center text-lg shadow-2xl bg-white p-2"
             >
-              <p className="font-bold">{day}</p>
-              <p>Workout Name: {} </p>
-              <p>Weight in LBS: </p>
+              <button className="btn btn-error w-fit" onClick={() => deleteHandler(workout.id)}>X</button>
+              <p className="font-bold">{workout.day.toUpperCase()}</p>
+              <p>Workout Name: {workout.name} </p>
+              <p>Weight: {workout.pounds}lbs</p>
             </div>
           )
-      )}
+      }
     </div>
   );
 };

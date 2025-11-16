@@ -30,12 +30,23 @@ localStorage.setItem('workout', JSON.stringify(newData))
 
   
   };
+const handleDelete = (workoutID) => {
 
+  const workoutToDelete = stored.filter(item => item.id !== workoutID && item);
+          localStorage.setItem(
+            "workout",
+            JSON.stringify(workoutToDelete)
+          );
+
+  setStored(workoutToDelete);
+
+
+}
 
   return (
     <div className='grid md:grid-cols-3 gap-4 p-4'>
       <WorkoutForm stored={handleStored} />
-      <WeekCards workout={stored} />
+      <WeekCards workouts={stored} deleteHandler={handleDelete} />
     </div>
   )
 }

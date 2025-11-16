@@ -2,7 +2,7 @@
 import { useState } from 'react';
 
 const WorkoutForm = ({stored}) => {
-    const [formData, setFormData] = useState({name: '', pounds: ''});
+    const [formData, setFormData] = useState({day:'', name: '', pounds: ''});
 
 
 
@@ -16,24 +16,56 @@ const WorkoutForm = ({stored}) => {
         e.preventDefault();
 
         stored(formData);
-
-        setFormData( prev => ({...prev, name: '', pounds: ''}))
+console.log(formData)
+        setFormData( prev => ({...prev, day: '', name: '', pounds: ''}))
 
     }
 
+      const daysOfWeek = [
+        "Sunday",
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+      ];
+
+
 
   return (
-    <form className='flex flex-col justify-center items-center gap-2 p-2 shadow-xl h-1/2' onSubmit={handleSubmit}>
-        <label htmlFor='name'>Workout Name: </label>
-        <input className="bg-gray-100 w-1/2 p-1"type='text' name="name" value={formData.name} onChange={handleChange}  />
-         <label htmlFor='punds'>Pounds </label>
-        <input className="bg-gray-100 w-1/2 p-1"type='text' name="pounds" value={parseFloat(formData.pounds) || ""} onChange={handleChange} />
-        <button className='btn btn-ghost' type='submit'>Submit</button>
-
-
-
+    <form
+      className="flex flex-col justify-center items-center gap-2 p-2 shadow-xl"
+      onSubmit={handleSubmit}
+    >
+      <label htmlFor="day">Day:</label>
+      <select value={formData.day} name="day" onChange={handleChange} required>
+        <option value={""}>Select today</option>
+        {daysOfWeek.map(day => (<option key={day} value={day.toLocaleLowerCase()}>{day}</option>))}
+      </select>
+      <label htmlFor="name">Workout Name: </label>
+      <input
+        className="bg-gray-100 w-1/2 p-1"
+        type="text"
+        name="name"
+        value={formData.name}
+        onChange={handleChange}
+        required
+      />
+      <label htmlFor="punds">Pounds </label>
+      <input
+        className="bg-gray-100 w-1/2 p-1"
+        type="text"
+        name="pounds"
+        value={parseFloat(formData.pounds) || ""}
+        onChange={handleChange}
+        required
+      />
+      <button className="btn btn-ghost" type="submit">
+        Submit
+      </button>
     </form>
-  )
+  );
 }
 
 export default WorkoutForm
