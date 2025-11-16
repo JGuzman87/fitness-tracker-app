@@ -1,37 +1,32 @@
-"use client"
-import { useState } from 'react';
+"use client";
+import { useState } from "react";
 
-const WorkoutForm = ({stored}) => {
-    const [formData, setFormData] = useState({day:'', name: '', pounds: ''});
+const WorkoutForm = ({ stored }) => {
+  const [formData, setFormData] = useState({ day: "", name: "", pounds: "" });
 
+  const handleChange = (e) => {
+    const { name, value } = e.target;
 
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-        setFormData(prev => ({...prev, [name]: value}))
-    }
+    stored(formData);
+    console.log(formData);
+    setFormData((prev) => ({ ...prev, day: "", name: "", pounds: "" }));
+  };
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-
-        stored(formData);
-console.log(formData)
-        setFormData( prev => ({...prev, day: '', name: '', pounds: ''}))
-
-    }
-
-      const daysOfWeek = [
-        "Sunday",
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday",
-        "Saturday",
-      ];
-
-
+  const daysOfWeek = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
 
   return (
     <form
@@ -41,7 +36,11 @@ console.log(formData)
       <label htmlFor="day">Day:</label>
       <select value={formData.day} name="day" onChange={handleChange} required>
         <option value={""}>Select today</option>
-        {daysOfWeek.map(day => (<option key={day} value={day.toLocaleLowerCase()}>{day}</option>))}
+        {daysOfWeek.map((day) => (
+          <option key={day} value={day.toLocaleLowerCase()}>
+            {day}
+          </option>
+        ))}
       </select>
       <label htmlFor="name">Workout Name: </label>
       <input
@@ -57,7 +56,7 @@ console.log(formData)
         className="bg-gray-100 w-1/2 p-1"
         type="text"
         name="pounds"
-        value={parseFloat(formData.pounds) || ""}
+        value={formData.pounds}
         onChange={handleChange}
         required
       />
@@ -66,6 +65,6 @@ console.log(formData)
       </button>
     </form>
   );
-}
+};
 
-export default WorkoutForm
+export default WorkoutForm;
