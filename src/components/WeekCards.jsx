@@ -8,7 +8,7 @@ const WeekCards = ({ workouts, deleteHandler }) => {
             className="card-body text-center text-lg shadow-2xl bg-white p-2"
           >
             <button
-              className="btn btn-error w-fit"
+              className="btn btn-error w-fit hover:bg-red-600"
               onClick={() => deleteHandler(workout.id)}
             >
               X

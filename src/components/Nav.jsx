@@ -45,7 +45,7 @@ const Nav = () => {
           </div>
         </div>
         <div className="navbar-center">
-          <a className="btn btn-ghost text-xl">My Fitness Tracker</a>
+          <Link href={'/'} className="btn btn-ghost text-xl">My Fitness Tracker</Link>
         </div>
     
       </div>
