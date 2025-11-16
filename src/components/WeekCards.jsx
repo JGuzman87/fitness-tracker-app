@@ -1,6 +1,6 @@
 const WeekCards = ({ workouts, deleteHandler }) => {
   return (
-    <div className="card bg-base-100 grid grid-cols-3 md:col-span-2 gap-2 p-2">
+    <div className="card bg-base-100 grid md:grid-cols-3 md:col-span-2 gap-2 p-2">
       {workouts.length > 0 &&
         workouts.map((workout) => (
           <div
