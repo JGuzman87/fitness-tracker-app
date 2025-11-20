@@ -18,7 +18,7 @@ const Foods = () => {
           {
             method: "GET",
             headers: {
-              "X-Api-Key": "R9ySqtgc2BEIeEtS9uk72A==4y2ggWBSl6VoOQjD",
+              "X-Api-Key": "",
             },
           }
         );
