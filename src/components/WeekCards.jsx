@@ -15,7 +15,7 @@ const WeekCards = ({ workouts, deleteHandler }) => {
             </button>
             <p className="font-bold capitalize">{workout.day}</p>
             <p>Workout Name: {workout.name} </p>
-            <p>Weight: {parseFloat(workout.pounds) || 0}</p>
+            <p>Weight: {parseFloat(workout.pounds) + "lbs" || 0 + "lbs"}</p>
           </div>
         ))}
     </div>

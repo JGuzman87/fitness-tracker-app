@@ -1,7 +1,9 @@
-export default function Home() {
+import React from 'react'
+
+const Home = () => {
   return (
-    <div className="">
-      
-    </div>
-  );
+    <div>Home</div>
+  )
 }
+
+export default Home;
