@@ -3,15 +3,18 @@ import { useState } from "react";
 
 const Foods = () => {
   const [foodItem, setFoodItem] = useState("");
+  const [grams, setGrams] = useState("");
   const [nutrition, setNutrition] = useState(null);
 
   const handleFetch = (e) => {
     e.preventDefault();
 
     const fetchData = async () => {
+
+      const query = `${grams}g ${foodItem}`
       try {
         const response = await fetch(
-          `https://api.calorieninjas.com/v1/nutrition?query=${foodItem}`,
+          `https://api.calorieninjas.com/v1/nutrition?query=${encodeURIComponent(query)}`,
           {
             method: "GET",
             headers: {
@@ -31,10 +34,11 @@ const Foods = () => {
     };
     fetchData();
     setFoodItem("");
+    setGrams("")
   };
 
   return (
-    <div className="grid grid-cols-2">
+    <div className="grid md:grid-cols-2 gap-4 p-2">
       <form
         className="flex flex-col gap-2 p-2 shadow-2xl"
         onSubmit={handleFetch}
@@ -46,6 +50,16 @@ const Foods = () => {
           value={foodItem}
           placeholder="food item goes here"
           onChange={(e) => setFoodItem(e.target.value)}
+          required
+        />
+        <label htmlFor="grams">How many grams: </label>
+        <input
+          type="text"
+          name="grams"
+          value={grams}
+          placeholder="food item goes here"
+          onChange={(e) => setGrams(e.target.value)}
+          required
         />
         <button type="submit" className="btn btn-success" onClick={handleFetch}>
           Submit
