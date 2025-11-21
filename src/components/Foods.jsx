@@ -14,13 +14,8 @@ const Foods = () => {
       const query = `${grams}g ${foodItem}`
       try {
         const response = await fetch(
-          `https://api.calorieninjas.com/v1/nutrition?query=${encodeURIComponent(query)}`,
-          {
-            method: "GET",
-            headers: {
-              "X-Api-Key": "",
-            },
-          }
+          `/api/foods?query=${encodeURIComponent(query)}`,
+     
         );
         if (!response.ok) {
           throw new Error(`Error: ${response.status} ${response.statusText}`);

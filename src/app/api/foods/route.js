@@ -1,10 +1,26 @@
-const key = process.env.API_Key
+import { NextResponse } from 'next/server';
 
-const res = await fetch(
+export async function GET(request) {
+  const { searchParams } = new URL(request.url);
+  const query = searchParams.get('query');
+
+
+const key = process.env.API_KEY
+
+const response = await fetch(
           `https://api.calorieninjas.com/v1/nutrition?query=${encodeURIComponent(query)}`,
           {
-            method: "GET",
             headers: {
-              "X-Api-Key": "R9ySqtgc2BEIeEtS9uk72A==4y2ggWBSl6VoOQjD",
+              "X-Api-Key": key,
             },
-          })
+          });
+
+          if (!response.ok) {
+            return NextResponse.json(
+              { error: "Failed to fetch data"},
+              { status: 500}
+            );
+          }
+          const data = await response.json();
+          return NextResponse.json(data);
+        }
