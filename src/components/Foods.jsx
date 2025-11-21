@@ -56,7 +56,7 @@ const Foods = () => {
           onChange={(e) => setGrams(e.target.value)}
           required
         />
-        <button type="submit" className="btn btn-success" onClick={handleFetch}>
+        <button type="submit" className="btn btn-success">
           Submit
         </button>
       </form>
