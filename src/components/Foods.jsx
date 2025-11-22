@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 const Foods = () => {
   const [foodItem, setFoodItem] = useState("");
@@ -32,34 +32,56 @@ const Foods = () => {
     setGrams("")
   };
 
+  const modalRef = useRef(null);
+  console.log(modalRef)
+
+  const openModal = () => {
+    modalRef.current.showModal();
+  }
+
   return (
     <div className="grid md:grid-cols-2 gap-4 p-2">
-      <form
-        className="flex flex-col gap-2 p-2 shadow-2xl"
-        onSubmit={handleFetch}
-      >
-        <label htmlFor="food">Enter food item here: </label>
-        <input
-          type="text"
-          name="food"
-          value={foodItem}
-          placeholder="food item goes here"
-          onChange={(e) => setFoodItem(e.target.value)}
-          required
-        />
-        <label htmlFor="grams">How many grams: </label>
-        <input
-          type="text"
-          name="grams"
-          value={grams}
-          placeholder="food item goes here"
-          onChange={(e) => setGrams(e.target.value)}
-          required
-        />
-        <button type="submit" className="btn btn-success">
-          Submit
-        </button>
-      </form>
+      <button className="btn" onClick={openModal}>
+        Add Food
+      </button>
+      <dialog ref={modalRef} className="modal">
+        <div className="modal-box">
+          <button
+            type="button"
+            className="btn btn-error"
+            onClick={() => modalRef.current.close()}
+          >
+            X
+          </button>
+          <p>Add Food:</p>
+          <form
+            className="flex flex-col gap-2 p-2 shadow-2xl"
+            onSubmit={handleFetch}
+          >
+            <label htmlFor="food">Enter food item here: </label>
+            <input
+              type="text"
+              name="food"
+              value={foodItem}
+              placeholder="food item goes here"
+              onChange={(e) => setFoodItem(e.target.value)}
+              required
+            />
+            <label htmlFor="grams">How many grams: </label>
+            <input
+              type="text"
+              name="grams"
+              value={grams}
+              placeholder="food item goes here"
+              onChange={(e) => setGrams(e.target.value)}
+              required
+            />
+            <button type="submit" className="btn btn-success">
+              Submit
+            </button>
+          </form>
+        </div>
+      </dialog>
 
       {nutrition && (
         <div className="card bg-white shadow-2xl p-2 rounded-2xl">
