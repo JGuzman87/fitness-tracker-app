@@ -45,7 +45,7 @@ const Foods = () => {
         Add Food
       </button>
       <dialog ref={modalRef} className="modal">
-        <div className="modal-box">
+        <div className="modal-box p-4">
           <button
             type="button"
             className="btn btn-error"
@@ -53,26 +53,26 @@ const Foods = () => {
           >
             X
           </button>
-          <p>Add Food:</p>
+          <p className="text-center font-bold">Add Food Item</p>
           <form
-            className="flex flex-col gap-2 p-2 shadow-2xl"
+            className="flex flex-col gap-2 p-2"
             onSubmit={handleFetch}
           >
-            <label htmlFor="food">Enter food item here: </label>
+            <label htmlFor="food">Food Item: </label>
             <input
               type="text"
               name="food"
               value={foodItem}
-              placeholder="food item goes here"
+              placeholder="item.."
               onChange={(e) => setFoodItem(e.target.value)}
               required
             />
-            <label htmlFor="grams">How many grams: </label>
+            <label htmlFor="grams">Grams: </label>
             <input
               type="text"
               name="grams"
               value={grams}
-              placeholder="food item goes here"
+              placeholder="grams.."
               onChange={(e) => setGrams(e.target.value)}
               required
             />

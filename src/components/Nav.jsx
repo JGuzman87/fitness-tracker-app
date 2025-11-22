@@ -9,7 +9,7 @@ const Nav = () => {
           My Fitness Tracker
         </Link>
       </div>
-      <div className="navbar-end">
+      <div className="md:navbar-end">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
             <svg
