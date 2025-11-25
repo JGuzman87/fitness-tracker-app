@@ -10,9 +10,17 @@ const WorkoutForm = ({ stored }) => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
+    await fetch("/api/workouts", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        day: formData.day,
+        name: formData.name,
+        weight: Number(formData.pounds)
+      }),
+    });
     stored(formData);
     console.log(formData);
     setFormData((prev) => ({ ...prev, day: "", name: "", pounds: "" }));

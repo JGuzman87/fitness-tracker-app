@@ -10,34 +10,34 @@ const Foods = () => {
     e.preventDefault();
 
     const fetchData = async () => {
-
-      const query = `${grams}g ${foodItem}`
+      const query = `${grams}g ${foodItem}`;
       try {
         const response = await fetch(
-          `/api/foods?query=${encodeURIComponent(query)}`,
-     
+          `/api/foods?query=${encodeURIComponent(query)}`
         );
         if (!response.ok) {
           throw new Error(`Error: ${response.status} ${response.statusText}`);
         }
         const data = await response.json();
+
         console.log(data.items[0]);
         setNutrition(data.items[0]);
       } catch (error) {
         console.log(error.message);
       }
     };
+
     fetchData();
     setFoodItem("");
-    setGrams("")
+    setGrams("");
   };
 
   const modalRef = useRef(null);
-  console.log(modalRef)
+  console.log(modalRef);
 
   const openModal = () => {
     modalRef.current.showModal();
-  }
+  };
 
   return (
     <div className="grid md:grid-cols-2 gap-4 p-2">
@@ -54,10 +54,7 @@ const Foods = () => {
             X
           </button>
           <p className="text-center font-bold">Add Food Item</p>
-          <form
-            className="flex flex-col gap-2 p-2"
-            onSubmit={handleFetch}
-          >
+          <form className="flex flex-col gap-2 p-2" onSubmit={handleFetch}>
             <label htmlFor="food">Food Item: </label>
             <input
               type="text"
