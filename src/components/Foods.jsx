@@ -21,11 +21,26 @@ const Foods = () => {
         const data = await response.json();
 
         console.log(data.items[0]);
-        setNutrition(data.items[0]);
+        let item = data.items[0];
+        setNutrition(item);
+               await fetch("/api/foods/db", {
+                 method: "POST",
+                 headers: { "Content-Type": "application/json" },
+                 body: JSON.stringify({
+                   name: item.name,
+                   grams: item.serving_size_g,
+                   calories: item.calories,
+                   protein: item.protein_g,
+                 }),
+               });
       } catch (error) {
         console.log(error.message);
       }
+
+     
     };
+
+
 
     fetchData();
     setFoodItem("");
