@@ -1,54 +1,39 @@
-"use client"
-import {useState, useEffect } from 'react'
-import WeekCards from '@/components/WeekCards';
-import WorkoutForm from '@/components/WorkoutForm';
+"use client";
+import { useState, useEffect } from "react";
+import WeekCards from "@/components/WeekCards";
+import WorkoutForm from "@/components/WorkoutForm";
 
 const WorkoutPage = () => {
-
   const [stored, setStored] = useState([]);
 
-
   useEffect(() => {
-    try {
-      const saved = JSON.parse(localStorage.getItem("workout")) || [];
-     if(saved) {
-      setStored(saved)
-     }
-    } catch (error) {
-      console.log("ERROR:", error.message);
-    }
+    fetchWorkouts();
   }, []);
 
-  const handleStored = (savedWorkout) => {
-
-  const dataWithID = { id: crypto.randomUUID(), ...savedWorkout };
-    
-  const newData = [...stored, dataWithID]
-
-setStored(newData);
-localStorage.setItem('workout', JSON.stringify(newData))
-
-  
+  const fetchWorkouts = async () => {
+    const res = await fetch("/api/workouts");
+    const data = await res.json();
+    setStored(data);
   };
-const handleDelete = (workoutID) => {
 
-  const workoutToDelete = stored.filter(item => item.id !== workoutID && item);
-          localStorage.setItem(
-            "workout",
-            JSON.stringify(workoutToDelete)
-          );
-
-  setStored(workoutToDelete);
+  const handleStored = async () => {
 
 
-}
+    fetchWorkouts();
+  };
+  const handleDelete = async (id) => {
+    await fetch(`/api/workouts/${id}`, {
+      method: "DELETE"
+    })
+    fetchWorkouts()
+  };
 
   return (
-    <div className='grid md:grid-cols-3 gap-4 p-4'>
+    <div className="grid md:grid-cols-3 gap-4 p-4">
       <WorkoutForm stored={handleStored} />
       <WeekCards workouts={stored} deleteHandler={handleDelete} />
     </div>
-  )
-}
+  );
+};
 
 export default WorkoutPage;

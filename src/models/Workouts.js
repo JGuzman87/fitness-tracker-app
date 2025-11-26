@@ -12,4 +12,4 @@ const WorkoutSchema = new mongoose.Schema(
 
 // If model exists, use it. Otherwise create it.
 export default mongoose.models.Workouts ||
-  mongoose.model("Workout", WorkoutSchema);
+  mongoose.model("Workouts", WorkoutSchema);

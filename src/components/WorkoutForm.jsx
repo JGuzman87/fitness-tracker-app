@@ -2,7 +2,7 @@
 import { useState } from "react";
 
 const WorkoutForm = ({ stored }) => {
-  const [formData, setFormData] = useState({ day: "", name: "", pounds: "" });
+  const [formData, setFormData] = useState({ day: "", name: "", weight: "" });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -18,12 +18,12 @@ const WorkoutForm = ({ stored }) => {
       body: JSON.stringify({
         day: formData.day,
         name: formData.name,
-        weight: Number(formData.pounds)
+        weight: Number(formData.weight)
       }),
     });
-    stored(formData);
+    stored();
     console.log(formData);
-    setFormData((prev) => ({ ...prev, day: "", name: "", pounds: "" }));
+    setFormData({ day: "", name: "", weight: "" });
   };
 
   const daysOfWeek = [
@@ -63,8 +63,8 @@ const WorkoutForm = ({ stored }) => {
       <input
         className="bg-gray-100 w-1/2 p-1"
         type="text"
-        name="pounds"
-        value={formData.pounds}
+        name="weight"
+        value={formData.weight}
         onChange={handleChange}
         required
       />

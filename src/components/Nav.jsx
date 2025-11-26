@@ -10,7 +10,7 @@ const Nav = () => {
         </Link>
       </div>
       <div className="md:navbar-end">
-        <div className="dropdown">
+        <div className="dropdown dropdown-center">
           <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
             <svg
               xmlns="http://www.w3.org/2000/svg"
