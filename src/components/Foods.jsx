@@ -107,7 +107,7 @@ const Foods = () => {
      
       {nutrition.length > 0 &&
         nutrition.map((foodItem) => (
-          <div className="card bg-white shadow-2xl p-2 rounded-2xl">
+          <div className="card bg-white shadow-2xl p-2 rounded-2xl" key={foodItem._id}>
             <div className="card-body">
               <p className=" card-title capitalize text-center">
                 {" "}
