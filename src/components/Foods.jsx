@@ -1,9 +1,14 @@
 "use client";
-import { useRef  } from "react";
+import { useRef } from "react";
 
-const Foods = ({foodFetch, nutrition, foodItem, grams, formHandle}) => {
-  
-
+const Foods = ({
+  foodFetch,
+  nutrition,
+  foodItem,
+  grams,
+  formHandle,
+  deleteHandler,
+}) => {
   const modalRef = useRef(null);
 
   const openModal = () => {
@@ -61,6 +66,7 @@ const Foods = ({foodFetch, nutrition, foodItem, grams, formHandle}) => {
               <button
                 type="button"
                 className="btn btn-ghost w-fit hover:bg-red-300 hover:text-white rounded-lg"
+                onClick={() => deleteHandler(foodItem._id)}
               >
                 x
               </button>

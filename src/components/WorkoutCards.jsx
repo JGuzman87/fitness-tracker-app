@@ -1,4 +1,4 @@
-const WeekCards = ({ workouts, deleteHandler }) => {
+const WorkoutCards = ({ workouts, deleteHandler }) => {
   return (
     <div className="card bg-base-100 grid md:grid-cols-3 md:col-span-2 gap-2 p-2">
       {workouts.length > 0 &&
@@ -22,4 +22,4 @@ const WeekCards = ({ workouts, deleteHandler }) => {
   );
 };
 
-export default WeekCards;
+export default WorkoutCards;

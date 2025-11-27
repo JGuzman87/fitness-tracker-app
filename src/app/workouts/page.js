@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import WeekCards from "@/components/WeekCards";
+import WorkoutCards from "@/components/WorkoutCards";
 import WorkoutForm from "@/components/WorkoutForm";
 
 const WorkoutPage = () => {
@@ -31,7 +31,7 @@ const WorkoutPage = () => {
   return (
     <div className="grid md:grid-cols-3 gap-4 p-4">
       <WorkoutForm stored={handleStored} />
-      <WeekCards workouts={stored} deleteHandler={handleDelete} />
+      <WorkoutCards workouts={stored} deleteHandler={handleDelete} />
     </div>
   );
 };
