@@ -31,7 +31,11 @@ const FoodPage = () => {
     e.preventDefault();
 
     const fetchData = async () => {
-      const query = `${grams}g ${foodItem}`;
+      // Sanitize dangerous characters before encoding
+      const cleanedFood = foodItem.replace(/&/g, "and");
+
+      // Build final query string
+      const query = `${grams}g ${cleanedFood}`;
       try {
         const response = await fetch(
           `/api/foods?query=${encodeURIComponent(query)}`
@@ -41,8 +45,15 @@ const FoodPage = () => {
         }
         const data = await response.json();
 
-        let item = data.items[0];
+        const item = data.items?.[0];
+
+        if (!item) {
+          alert("No items found");
+          return;
+        }
+
         setNutrition((prev) => [...prev, item]);
+
         await fetch("/api/foods/db", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
