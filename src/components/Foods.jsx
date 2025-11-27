@@ -1,61 +1,8 @@
 "use client";
-import { useState, useRef, useEffect } from "react";
+import { useRef  } from "react";
 
-const Foods = () => {
-  const [foodItem, setFoodItem] = useState("");
-  const [grams, setGrams] = useState("");
-  const [nutrition, setNutrition] = useState([]);
-
-  useEffect(() => {
-    const fetchFoods = async () => {
-      const res = await fetch('/api/foods/db');
-      const data = await res.json();
-     
-        setNutrition(data);
-    }
-    fetchFoods();
-  }, [])
-
-
-  const handleFetch = (e) => {
-    e.preventDefault();
-
-    const fetchData = async () => {
-      const query = `${grams}g ${foodItem}`;
-      try {
-        const response = await fetch(
-          `/api/foods?query=${encodeURIComponent(query)}`
-        );
-        if (!response.ok) {
-          throw new Error(`Error: ${response.status} ${response.statusText}`);
-        }
-        const data = await response.json();
-
-
-        let item = data.items[0];
-        setNutrition((prev) =>[...prev, item]);
-        await fetch("/api/foods/db", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            name: item.name,
-            grams: item.serving_size_g,
-            calories: item.calories,
-            protein: item.protein_g,
-          }),
-        });
-           const updated = await fetch("/api/foods/db");
-           const updatedList = await updated.json();
-           setNutrition(updatedList);
-      } catch (error) {
-        console.log(error.message);
-      }
-    };
-
-    fetchData();
-    setFoodItem("");
-    setGrams("");
-  };
+const Foods = ({foodFetch, nutrition, foodItem, grams, formHandle}) => {
+  
 
   const modalRef = useRef(null);
 
@@ -78,14 +25,14 @@ const Foods = () => {
             X
           </button>
           <p className="text-center font-bold">Add Food Item</p>
-          <form className="flex flex-col gap-2 p-2" onSubmit={handleFetch}>
+          <form className="flex flex-col gap-2 p-2" onSubmit={foodFetch}>
             <label htmlFor="food">Food Item: </label>
             <input
               type="text"
               name="food"
               value={foodItem}
               placeholder="item.."
-              onChange={(e) => setFoodItem(e.target.value)}
+              onChange={formHandle}
               required
             />
             <label htmlFor="grams">Grams: </label>
@@ -94,7 +41,7 @@ const Foods = () => {
               name="grams"
               value={grams}
               placeholder="grams.."
-              onChange={(e) => setGrams(e.target.value)}
+              onChange={formHandle}
               required
             />
             <button type="submit" className="btn btn-success">
@@ -104,11 +51,19 @@ const Foods = () => {
         </div>
       </dialog>
 
-     
       {nutrition.length > 0 &&
-        nutrition.map((foodItem) => (
-          <div className="card bg-white shadow-2xl p-2 rounded-2xl" key={foodItem._id}>
+        nutrition.map((foodItem, index) => (
+          <div
+            className="card bg-white shadow-2xl p-2 rounded-2xl"
+            key={foodItem._id || index}
+          >
             <div className="card-body">
+              <button
+                type="button"
+                className="btn btn-ghost w-fit hover:bg-red-300 hover:text-white rounded-lg"
+              >
+                x
+              </button>
               <p className=" card-title capitalize text-center">
                 {" "}
                 {foodItem.name}
