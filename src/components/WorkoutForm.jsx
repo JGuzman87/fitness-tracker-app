@@ -18,7 +18,7 @@ const WorkoutForm = ({ stored }) => {
       body: JSON.stringify({
         day: formData.day,
         name: formData.name,
-        weight: Number(formData.weight)
+        weight: Number(formData.weight),
       }),
     });
     stored();
@@ -41,7 +41,6 @@ const WorkoutForm = ({ stored }) => {
       className="flex flex-col justify-center items-center gap-2 p-2 shadow-xl rounded-2xl"
       onSubmit={handleSubmit}
     >
-      
       <select value={formData.day} name="day" onChange={handleChange} required>
         <option value={""}>Select a day</option>
         {daysOfWeek.map((day) => (

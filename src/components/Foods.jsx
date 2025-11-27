@@ -1,10 +1,21 @@
 "use client";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 
 const Foods = () => {
   const [foodItem, setFoodItem] = useState("");
   const [grams, setGrams] = useState("");
-  const [nutrition, setNutrition] = useState(null);
+  const [nutrition, setNutrition] = useState([]);
+
+  useEffect(() => {
+    const fetchFoods = async () => {
+      const res = await fetch('/api/foods/db');
+      const data = await res.json();
+     
+        setNutrition(data);
+    }
+    fetchFoods();
+  }, [])
+
 
   const handleFetch = (e) => {
     e.preventDefault();
@@ -20,27 +31,26 @@ const Foods = () => {
         }
         const data = await response.json();
 
-        console.log(data.items[0]);
+
         let item = data.items[0];
-        setNutrition(item);
-               await fetch("/api/foods/db", {
-                 method: "POST",
-                 headers: { "Content-Type": "application/json" },
-                 body: JSON.stringify({
-                   name: item.name,
-                   grams: item.serving_size_g,
-                   calories: item.calories,
-                   protein: item.protein_g,
-                 }),
-               });
+        setNutrition((prev) =>[...prev, item]);
+        await fetch("/api/foods/db", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            name: item.name,
+            grams: item.serving_size_g,
+            calories: item.calories,
+            protein: item.protein_g,
+          }),
+        });
+           const updated = await fetch("/api/foods/db");
+           const updatedList = await updated.json();
+           setNutrition(updatedList);
       } catch (error) {
         console.log(error.message);
       }
-
-     
     };
-
-
 
     fetchData();
     setFoodItem("");
@@ -48,7 +58,6 @@ const Foods = () => {
   };
 
   const modalRef = useRef(null);
-  console.log(modalRef);
 
   const openModal = () => {
     modalRef.current.showModal();
@@ -95,19 +104,21 @@ const Foods = () => {
         </div>
       </dialog>
 
-      {nutrition && (
-        <div className="card bg-white shadow-2xl p-2 rounded-2xl">
-          <div className="card-body">
-            <p className=" card-title capitalize text-center">
-              {" "}
-              {nutrition.name}
-            </p>
-            <p>Grams: {nutrition.serving_size_g} g</p>
-            <p>Calories: {nutrition.calories}</p>
-            <p>Protein: {nutrition.protein_g} g</p>
+     
+      {nutrition.length > 0 &&
+        nutrition.map((foodItem) => (
+          <div className="card bg-white shadow-2xl p-2 rounded-2xl">
+            <div className="card-body">
+              <p className=" card-title capitalize text-center">
+                {" "}
+                {foodItem.name}
+              </p>
+              <p>Grams: {foodItem.grams} g</p>
+              <p>Calories: {foodItem.calories}</p>
+              <p>Protein: {foodItem.protein} g</p>
+            </div>
           </div>
-        </div>
-      )}
+        ))}
     </div>
   );
 };

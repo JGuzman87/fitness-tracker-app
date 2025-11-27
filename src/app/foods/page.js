@@ -1,7 +1,8 @@
+
 import React from 'react';
 import Foods from '@/components/Foods';
 
-const page = () => {
+const FoodPage = () => {
   return (
     <div className='grid grid-cols-3 mt-4 '>
       <Foods />
@@ -9,4 +10,4 @@ const page = () => {
   )
 }
 
-export default page
+export default FoodPage;
