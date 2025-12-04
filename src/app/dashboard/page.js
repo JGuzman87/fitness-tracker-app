@@ -1,11 +1,38 @@
 "use client";
-import { useEffect, useState } from "react";
-import Foods from "@/components/Foods";
 
-const FoodPage = () => {
-  const [foodItem, setFoodItem] = useState("");
-  const [grams, setGrams] = useState("");
-  const [nutrition, setNutrition] = useState([]);
+import Foods from "@/components/Foods";
+import WorkoutCards from "@/components/WorkoutCards";
+import WorkoutForm from "@/components/WorkoutForm";
+import { useState, useEffect } from "react";
+
+const DashBoard = () => {
+
+  const [stored, setStored] = useState([]);
+    const [foodItem, setFoodItem] = useState("");
+    const [grams, setGrams] = useState("");
+    const [nutrition, setNutrition] = useState([]);
+
+  useEffect(() => {
+    fetchWorkouts();
+  }, []);
+
+  const fetchWorkouts = async () => {
+    const res = await fetch("/api/workouts");
+    const data = await res.json();
+    setStored(data);
+  };
+
+  const handleStored = async () => {
+    fetchWorkouts();
+  };
+  const handleWorkoutDelete = async (id) => {
+    await fetch(`/api/workouts/${id}`, {
+      method: "DELETE",
+    });
+    fetchWorkouts();
+  };
+
+
 
   useEffect(() => {
     const fetchFoods = async () => {
@@ -83,24 +110,31 @@ const FoodPage = () => {
     setNutrition(updatedList);
   };
 
-  const handleDelete = async (id) => {
+  const handleFoodDelete = async (id) => {
     await fetch(`/api/foods/db/${id}`, {
       method: "DELETE",
     });
     refreshList();
-  }
+  };
+
   return (
-    <div className="grid grid-cols-3 mt-4 ">
+    <div className="grid md:grid-cols-3 gap-4 p-4">
+      <WorkoutForm stored={handleStored} />
+      <WorkoutCards workouts={stored} deleteHandler={handleWorkoutDelete} />
       <Foods
         foodFetch={handleFetch}
         nutrition={nutrition}
         foodItem={foodItem}
         grams={grams}
         formHandle={handleChange}
-        deleteHandler={handleDelete}
+        deleteHandler={handleFoodDelete}
       />
     </div>
-  );
-};
+  )
+}
 
-export default FoodPage;
+
+  
+
+
+export default DashBoard;

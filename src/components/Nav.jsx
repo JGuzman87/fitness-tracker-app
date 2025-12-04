@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import React from 'react'
+
 
 const Nav = () => {
   return (
@@ -29,7 +29,7 @@ const Nav = () => {
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
           >
             <li>
-              <a>Item 1</a>
+              <Link href="/dashboard">Dashboard</Link>
             </li>
             <li>
               <a>Parent</a>
@@ -48,19 +48,19 @@ const Nav = () => {
           </ul>
         </div>
         <Link href="/">
-        <Image
-          src="/fit-logo.png"
-          alt="fitness logo"
-          width={150}
-          height={150}
-          className="rounded-md  ml-2"
-        />
+          <Image
+            src="/fit-logo.png"
+            alt="fitness logo"
+            width={150}
+            height={150}
+            className="rounded-md  ml-2"
+          />
         </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
           <li>
-            <a>Item 1</a>
+            <Link href="/dashboard">Dashboard</Link>
           </li>
           <li>
             <details>
