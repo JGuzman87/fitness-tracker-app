@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-
+import Form from './Form';
 
 const Nav = () => {
   return (
@@ -60,10 +60,11 @@ const Nav = () => {
               <summary>Get Started</summary>
               <ul className="p-2 bg-base-100 w-40 z-1">
                 <li>
-                  <a>Login</a>
+                  <Form btnTitle="Login" style=" w-full text-left" />
                 </li>
+               
                 <li>
-                  <a>Sign Up</a>
+                  <Link href="/signup">Sign Up</Link>
                 </li>
               </ul>
             </details>
