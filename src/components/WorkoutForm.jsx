@@ -46,16 +46,16 @@ const WorkoutForm = ({ stored }) => {
     <div>
       <button type="button" className="btn" onClick={openModal}>Add Workout</button>
         <dialog ref={modalRef} className="modal">
-        <div className="modal-box p-4">
+        <div className="modal-box bg-black/50 p-4">
           <button
             type="button"
-            className="btn btn-error"
+            className="btn btn-ghost text-white hover:text-black"
             onClick={() => modalRef.current.close()}
           >
             X
           </button>
       <form
-        className="flex flex-col justify-center items-center gap-2 p-2 rounded-2xl"
+        className="flex flex-col justify-center items-center  text-white gap-2 p-2 rounded-2xl"
         onSubmit={handleSubmit}
       >
         <select

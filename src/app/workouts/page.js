@@ -17,15 +17,13 @@ const WorkoutPage = () => {
   };
 
   const handleStored = async () => {
-
-
     fetchWorkouts();
   };
   const handleDelete = async (id) => {
     await fetch(`/api/workouts/${id}`, {
-      method: "DELETE"
-    })
-    fetchWorkouts()
+      method: "DELETE",
+    });
+    fetchWorkouts();
   };
 
   return (

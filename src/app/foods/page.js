@@ -88,7 +88,7 @@ const FoodPage = () => {
       method: "DELETE",
     });
     refreshList();
-  };
+  }
   return (
     <div className="grid grid-cols-3 mt-4 ">
       <Foods

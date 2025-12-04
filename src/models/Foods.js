@@ -2,9 +2,9 @@ import mongoose from "mongoose";
 
 const FoodItemSchema = new mongoose.Schema(
   {
-    name: {type:String, required: true},
+    name: { type: String, required: true },
     grams: Number,
-    calories:Number,
+    calories: Number,
     protein: Number,
     date: { type: Date, default: Date.now },
   },
