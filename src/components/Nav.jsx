@@ -40,12 +40,13 @@ const Nav = () => {
             <li>
               <Link href="/">Home</Link>
             </li>
-            <li>
+        {  session && <li>
               <Link href="/dashboard">Dashboard</Link>
-            </li>
-            <li>
-              <Link href="/signup">Sign Up</Link>
-            </li>
+            </li>}
+            { session && <li>
+              <Link href={'#'} onClick={handleClick}>Logout</Link> 
+            </li>}
+            {!session && <li><Link href={'/signup'}>Sign up</Link></li>}
           </ul>
         </div>
         <Link href="/">
@@ -61,9 +62,9 @@ const Nav = () => {
 
       <div className="navbar-end hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
-          <li>
+       { session &&  <li>
             <Link href="/dashboard">Dashboard</Link>
-          </li>
+          </li>}
          <li>
          { session ? (<Link href={'#'} onClick={handleClick}>Logout</Link> ) : (<details> 
               <summary>Get Started</summary>

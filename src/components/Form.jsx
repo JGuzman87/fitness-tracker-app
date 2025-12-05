@@ -5,7 +5,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 import { signIn } from "next-auth/react";
 
-import Link from 'next/link';
 
 const Form = ({ btnTitle, style }) => {
 
@@ -13,6 +12,7 @@ const Form = ({ btnTitle, style }) => {
 const [isOpen, setIsOpen] = useState(false);
 const [email, setEmail] = useState("");
 const [password, setPassword] = useState("");
+const [error, setError ] = useState('')
 
 const router = useRouter()
 
@@ -27,7 +27,8 @@ async function handleLogin(e) {
   if (!res.error) {
     router.push("/dashboard");
   } else {
-    console.log("Login failed");
+    setError(res.error);
+    alert("Login failed");
   }
 }
   return (
@@ -78,6 +79,7 @@ async function handleLogin(e) {
                   Log in
                 </button>
               </form>
+              {error}
             </motion.div>
           </motion.div>
         )}
