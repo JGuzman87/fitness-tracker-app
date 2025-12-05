@@ -1,5 +1,7 @@
 "use client";
 import { useSession } from "next-auth/react";
+import MotionWrapper from "@/components/MotionWrapper";
+import Calendar from "@/components/Calendar";
 const DashBoard = () => {
 
 
@@ -11,12 +13,19 @@ if (session) {
 }
   
   return (
-    <div className="grid md:grid-cols-3 gap-4 p-4">
-      {session && <p>DashBoard Page</p>}
-    </div>
-  )
+    <MotionWrapper>
+      {session && (
+        <div className="flex flex-col p-4">
+          {" "}
+          <p>{`Welcome ${session.user.name}`}</p>
+          <Calendar />
+        </div>
+      )}
+    </MotionWrapper>
+  );
+   
+ 
 }
-
 
   
 

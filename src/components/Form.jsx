@@ -23,7 +23,6 @@ const handleLogin = async (e) => {
    setIsLoading(true);
 
    await new Promise((resolve) => setTimeout(resolve, 1200)); 
-   setIsLoading(false)
 
   const res = await signIn("credentials", {
     redirect: false,
@@ -36,6 +35,8 @@ const handleLogin = async (e) => {
   if (!res.error) {
     router.push("/dashboard");
   } else {
+       setIsLoading(false);
+
     alert("Login failed: Please verify your email or password");
   }
 }
