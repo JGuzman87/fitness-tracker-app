@@ -23,6 +23,7 @@ const handleLogin = async (e) => {
    setIsLoading(true);
 
    await new Promise((resolve) => setTimeout(resolve, 1200)); 
+   setIsLoading(false)
 
   const res = await signIn("credentials", {
     redirect: false,
