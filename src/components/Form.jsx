@@ -45,7 +45,6 @@ async function handleLogin(e) {
             exit={{ opacity: 0 }}
             onClick={() => setIsOpen(false)}
           >
-        
             <motion.div
               className=" backdrop-blur-xs p-6 rounded-xl shadow-xl w-[90%] max-w-md flex flex-col gap-4"
               initial={{ opacity: 0, y: 80, scale: 0.9 }}
@@ -54,26 +53,32 @@ async function handleLogin(e) {
               transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
               onClick={(e) => e.stopPropagation()}
             >
-              <input
-                type="email"
-                placeholder="enter email..."
-                className="input input-success w-full text-black text-2xl p-1 bg-white/80"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-              />
-              <input
-                type="password"
-                placeholder="enter password..."
-                className="input input-success w-full text-black text-2xl p-1 bg-white/80"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-              />
+              <form onSubmit={handleLogin} className='flex flex-col gap-4'>
+              
+                <input
+                  type="email"
+                  placeholder="enter email..."
+                  className="input input-success w-full text-black text-2xl p-1 bg-white/80"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                />
+                <input
+                  type="password"
+                  placeholder="enter password..."
+                  className="input input-success w-full text-black text-2xl p-1 bg-white/80"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                />
+                <button
+                  type="submit"
+                  className="hover:text-purple-400 text-3xl font-thin font-stretch-10%"
+                >
+                  Log in
+                </button>
+              </form>
             </motion.div>
-            <Link href="#" onClick={handleLogin} className="hover:text-purple-400 text-3xl font-thin font-stretch-10%">
-              Login
-            </Link>
           </motion.div>
         )}
       </AnimatePresence>
