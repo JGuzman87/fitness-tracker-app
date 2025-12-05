@@ -24,7 +24,7 @@ const Signup = () => {
           className="input input-bordered input-success w-full max-w-xs text-black text-2xl p-1 bg-white/80"
           required
         />
-        <button type="submit" className="btn btn-primary text-2xl font-light w-full max-w-xs">
+        <button type="submit" className="btn bg-purple-900 text-2xl font-light w-full max-w-xs">
           Sign Up
         </button>
       </form>

@@ -35,9 +35,9 @@ const Nav = () => {
               <Link href="/dashboard">Dashboard</Link>
             </li>
             <li>
-           
-              <a>Item 3</a>
+              <Link href="/signup">Sign Up</Link> 
             </li>
+           
           </ul>
         </div>
         <Link href="/">
