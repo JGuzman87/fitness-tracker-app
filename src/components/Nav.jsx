@@ -1,11 +1,20 @@
+"use client";
 import Link from 'next/link';
 import Image from 'next/image';
 import Form from './Form';
+import { signOut } from "next-auth/react";
+import { useSession } from 'next-auth/react';
 
 const Nav = () => {
+
+  const { data: session } = useSession();
+  const handleClick = () => {
+    signOut({ callbackUrl: '/'})
+  }
+
   return (
     <div className="navbar bg-base-100 shadow-sm">
-      <div className="navbar-start">
+      <div className="md:navbar-start navbar-center flex gap-50 md:gap-0 ">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
             <svg
@@ -35,9 +44,8 @@ const Nav = () => {
               <Link href="/dashboard">Dashboard</Link>
             </li>
             <li>
-              <Link href="/signup">Sign Up</Link> 
+              <Link href="/signup">Sign Up</Link>
             </li>
-           
           </ul>
         </div>
         <Link href="/">
@@ -46,34 +54,32 @@ const Nav = () => {
             alt="fitness logo"
             width={150}
             height={150}
-            className="rounded-md hover:bg-white/20 ml-2"
+            className=" hover:bg-white/20 ml-2"
           />
         </Link>
       </div>
+
       <div className="navbar-end hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
           <li>
             <Link href="/dashboard">Dashboard</Link>
           </li>
-          <li>
-            <details>
+         <li>
+         { session ? (<Link href={'#'} onClick={handleClick}>Logout</Link> ) : (<details> 
               <summary>Get Started</summary>
               <ul className="p-2 bg-base-100 w-40 z-1">
                 <li>
                   <Form btnTitle="Login" style=" w-full text-left" />
                 </li>
-               
+
                 <li>
                   <Link href="/signup">Sign Up</Link>
                 </li>
               </ul>
-            </details>
+            </details>)}
           </li>
-         
         </ul>
       </div>
-      
-      
     </div>
   );
 }

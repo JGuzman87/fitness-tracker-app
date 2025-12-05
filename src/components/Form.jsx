@@ -2,10 +2,34 @@
 "use client";
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useRouter } from 'next/navigation';
+import { signIn } from "next-auth/react";
+
 import Link from 'next/link';
 
 const Form = ({ btnTitle, style }) => {
-  const [isOpen, setIsOpen] = useState(false);
+
+
+const [isOpen, setIsOpen] = useState(false);
+const [email, setEmail] = useState("");
+const [password, setPassword] = useState("");
+
+const router = useRouter()
+
+async function handleLogin(e) {
+  e.preventDefault();
+  const res = await signIn("credentials", {
+    redirect: false,
+    email,
+    password,
+  });
+
+  if (!res.error) {
+    router.push("/dashboard");
+  } else {
+    console.log("Login failed");
+  }
+}
   return (
     <div>
       <button className={style} onClick={() => setIsOpen(true)}>
@@ -34,16 +58,20 @@ const Form = ({ btnTitle, style }) => {
                 type="email"
                 placeholder="enter email..."
                 className="input input-success w-full text-black text-2xl p-1 bg-white/80"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 required
               />
               <input
                 type="password"
                 placeholder="enter password..."
                 className="input input-success w-full text-black text-2xl p-1 bg-white/80"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 required
               />
             </motion.div>
-            <Link href="/dashboard" className="hover:text-purple-400 text-3xl font-thin font-stretch-10%" onClick={() => setIsOpen(false)}>
+            <Link href="#" onClick={handleLogin} className="hover:text-purple-400 text-3xl font-thin font-stretch-10%">
               Login
             </Link>
           </motion.div>
