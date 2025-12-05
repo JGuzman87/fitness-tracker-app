@@ -12,17 +12,25 @@ const Form = ({ btnTitle, style }) => {
 const [isOpen, setIsOpen] = useState(false);
 const [email, setEmail] = useState("");
 const [password, setPassword] = useState("");
+const [isLoading, setIsLoading ] = useState(false)
 
 
 const router = useRouter()
 
-async function handleLogin(e) {
+const handleLogin = async (e) => {
   e.preventDefault();
+
+   setIsLoading(true);
+
+   await new Promise((resolve) => setTimeout(resolve, 1200)); 
+
   const res = await signIn("credentials", {
     redirect: false,
     email,
     password,
   });
+
+
 
   if (!res.error) {
     router.push("/dashboard");
@@ -53,8 +61,7 @@ async function handleLogin(e) {
               transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
               onClick={(e) => e.stopPropagation()}
             >
-              <form onSubmit={handleLogin} className='flex flex-col gap-4'>
-              
+              <form onSubmit={handleLogin} className="flex flex-col gap-4">
                 <input
                   type="email"
                   placeholder="enter email..."
@@ -75,10 +82,15 @@ async function handleLogin(e) {
                   type="submit"
                   className="hover:text-purple-400 text-3xl font-thin font-stretch-10%"
                 >
-                  Log in
+                  {isLoading ? (
+                    <div>
+                      <span className="loading loading-dots loading-xl"></span>
+                    </div>
+                  ) : (
+                    "Log in"
+                  )}
                 </button>
               </form>
-            
             </motion.div>
           </motion.div>
         )}
