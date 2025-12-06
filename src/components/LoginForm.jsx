@@ -45,7 +45,7 @@ const handleLogin = async (e) => {
    await new Promise((resolve) => setTimeout(resolve, 1200)); 
 
     signIn("google", { callbackUrl: "/dashboard" });
-   router.push("/dashboard");
+ 
 
   }
   return (

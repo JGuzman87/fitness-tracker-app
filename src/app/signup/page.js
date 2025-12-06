@@ -2,11 +2,13 @@
 import MotionWrapper from "@/components/MotionWrapper";
 import Image from "next/image";
 import { useState } from "react";
+import { signIn } from "next-auth/react";
 
 const Signup = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -34,8 +36,8 @@ const Signup = () => {
   };
 
 
-    const handleGoogleLogin = async (e) => {
-         setIsLoading(true);
+    const handleGoogleLogin = async () => {
+   
   
      await new Promise((resolve) => setTimeout(resolve, 1200)); 
   

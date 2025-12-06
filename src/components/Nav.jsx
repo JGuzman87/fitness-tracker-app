@@ -27,7 +27,7 @@ const Nav = () => {
 
   return (
     <div className="navbar bg-base-100 shadow-sm">
-      <div className="md:navbar-start navbar-center flex ">
+      <div className="md:navbar-start navbar-center flex gap-2">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
             <svg
@@ -83,10 +83,10 @@ const Nav = () => {
         </Link>
         {session && path === '/dashboard' && (
           <p
-            className={`${bounce} text-amber-600  text-lg text-shadow-black font-bold`}
+            className={`${bounce} text-amber-600  text-md text-shadow-black font-bold '`}
           >
-            Welcome to your
-            <br /> Dashboard {session.user.name}
+            Welcome<br /> to your
+            Dashboard <br/> {session.user.name}
           </p>
         )}
       </div>

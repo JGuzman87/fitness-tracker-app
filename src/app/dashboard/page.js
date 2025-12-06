@@ -16,8 +16,6 @@ if (session) {
     <MotionWrapper>
       {session && (
         <div className="flex flex-col gap-2 p-4">
-          {" "}
-          <p className="font-bold text-2xl">{`Welcome ${session.user.name}`}</p>
          
           <Calendar />
         </div>
