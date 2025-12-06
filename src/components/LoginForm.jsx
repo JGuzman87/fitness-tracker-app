@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 import { signIn } from "next-auth/react";
 import Image from 'next/image';
 
-const Form = ({ btnTitle, style }) => {
+const LoginForm = ({ btnTitle, style }) => {
 
 
 const [isOpen, setIsOpen] = useState(false);
@@ -89,7 +89,7 @@ const handleLogin = async (e) => {
                 <div className="flex flex-col items-center">
                   <button
                     type="submit"
-                    className="hover:text-purple-400 text-3xl font-thin font-stretch-10%"
+                    className="hover:text-purple-400  text-3xl font-thin font-stretch-10% transition delay-150 duration-300 ease-in-out hover:-translate-y-1 hover:scale-110"
                   >
                     {isLoading ? (
                       <div>
@@ -101,9 +101,12 @@ const handleLogin = async (e) => {
                   </button>
                 </div>
               </form>
-              <p className='text-center font-thin'>or</p>
-              <button className="btn font-thin text-2xl" onClick={handleGoogleLogin}>
-                Sign in with 
+              <p className="text-center font-thin">or</p>
+              <button
+                className="btn font-thin text-2xl hover:text-purple-400 "
+                onClick={handleGoogleLogin}
+              >
+                <p>Sign in with</p>
                 <Image
                   src="/Google.svg"
                   alt="google image"
@@ -120,4 +123,4 @@ const handleLogin = async (e) => {
   );
 }
 
-export default Form
+export default LoginForm;

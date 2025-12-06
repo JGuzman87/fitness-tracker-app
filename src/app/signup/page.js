@@ -75,14 +75,17 @@ const Signup = () => {
           />
           <button
             type="submit"
-            className="btn bg-purple-900 text-2xl font-light w-full max-w-xs"
+            className="btn bg-purple-900 hover:bg-purple-950 text-2xl font-light w-full max-w-xs transition delay-150 duration-300 ease-in-out hover:-translate-y-1 hover:scale-110"
           >
             Sign Up
           </button>
         </form>
         <p>or</p>
-        <button className="btn btn-success " onClick={handleGoogleLogin}>
-          "Sign in with "
+        <button
+          className="btn btn-base-200 text-2xl font-thin  hover:text-white"
+          onClick={handleGoogleLogin}
+        >
+          Sign in with
           <Image
             src="/Google.svg"
             alt="google image"

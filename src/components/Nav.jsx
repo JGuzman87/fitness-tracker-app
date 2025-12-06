@@ -1,7 +1,7 @@
 "use client";
 import Link from 'next/link';
 import Image from 'next/image';
-import Form from './Form';
+import Form from './LoginForm';
 import { signOut } from "next-auth/react";
 import { useSession } from 'next-auth/react';
 import { useEffect, useState } from 'react';
@@ -76,7 +76,7 @@ const Nav = () => {
             alt="fitness logo"
             width={150}
             height={150}
-            className=" hover:bg-white/20 ml-2"
+            className=" hover:bg-white/20 ml-2 transition delay-150 duration-300 ease-in-out hover:-translate-y-1 hover:scale-110 rounded-2xl"
           />
         </Link>
         {session && (
@@ -108,7 +108,7 @@ const Nav = () => {
                   <li>
                     <Link href={"/login"}>Login</Link>
                   </li>
-                  
+
                   <li>
                     <Link href="/signup">Sign Up</Link>
                   </li>
