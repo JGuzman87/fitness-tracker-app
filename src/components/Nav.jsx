@@ -83,7 +83,7 @@ const Nav = () => {
         </Link>
         {session && path === '/dashboard' && (
           <p
-            className={`${bounce} text-amber-600  text-2xl text-shadow-black font-bold `}
+            className={`${bounce} text-amber-600  text-lg text-shadow-black font-bold`}
           >
             Welcome to your
             <br /> Dashboard {session.user.name}
