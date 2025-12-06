@@ -1,4 +1,6 @@
-{
+
+  {
+
   "name": "fitness-tracker-app",
   "version": "0.1.0",
   "private": true,
@@ -7,7 +9,7 @@
     "build": "next build",
     "start": "next start"
   },
-  "dependencies": {
+    "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^7.1.0",
     "@fortawesome/free-brands-svg-icons": "^7.1.0",
     "@fortawesome/free-regular-svg-icons": "^7.1.0",
@@ -20,16 +22,17 @@
     "framer-motion": "^12.23.25",
     "mongoose": "^9.0.0",
     "nex": "^2.0.22",
-    "next": "16.0.5",
+    "next":  "^16.0.7",
     "next-auth": "^4.24.13",
     "react": "19.2.0",
     "react-dom": "19.2.0",
     "sqlite3": "^5.1.7"
   },
-  "devDependencies": {
+    "devDependencies": {
     "@tailwindcss/postcss": "^4",
     "prisma": "^6.19.0",
     "tailwindcss": "^4",
     "tailwindcss-animate": "^1.0.7"
   }
 }
+
