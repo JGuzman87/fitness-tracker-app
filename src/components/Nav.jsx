@@ -1,7 +1,7 @@
 "use client";
 import Link from 'next/link';
 import Image from 'next/image';
-import Form from './LoginForm';
+import { usePathname } from 'next/navigation';
 import { signOut } from "next-auth/react";
 import { useSession } from 'next-auth/react';
 import { useEffect, useState } from 'react';
@@ -21,6 +21,8 @@ const Nav = () => {
     }, 3000)
     
   }, [])
+
+  const path = usePathname();
 
 
   return (
@@ -79,7 +81,7 @@ const Nav = () => {
             className=" hover:bg-white/20 ml-2 transition delay-150 duration-300 ease-in-out hover:-translate-y-1 hover:scale-110 rounded-2xl"
           />
         </Link>
-        {session && (
+        {session && path === '/dashboard' && (
           <p
             className={`${bounce} text-amber-600  text-2xl text-shadow-black font-bold `}
           >

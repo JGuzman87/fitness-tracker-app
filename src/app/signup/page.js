@@ -39,7 +39,10 @@ const Signup = () => {
   
      await new Promise((resolve) => setTimeout(resolve, 1200)); 
   
-     signIn("google")
+  
+     signIn("google", { callbackUrl: "/dashboard" });
+
+
     }
 
   return (
