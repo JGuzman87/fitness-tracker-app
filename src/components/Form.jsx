@@ -99,19 +99,19 @@ const handleLogin = async (e) => {
                       "Log in"
                     )}
                   </button>
-                  <p>or</p>
-                  <button className="btn " onClick={handleGoogleLogin}>
-                    "Sign in with "
-                    <Image
-                      src="/Google.svg"
-                      alt="google image"
-                      width={50}
-                      height={50}
-                      className='w-fit'
-                    />
-                  </button>
                 </div>
               </form>
+              <p className='text-center font-thin'>or</p>
+              <button className="btn font-thin text-2xl" onClick={handleGoogleLogin}>
+                Sign in with 
+                <Image
+                  src="/Google.svg"
+                  alt="google image"
+                  width={50}
+                  height={50}
+                  className="w-fit"
+                />
+              </button>
             </motion.div>
           </motion.div>
         )}

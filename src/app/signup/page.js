@@ -44,42 +44,44 @@ const Signup = () => {
 
   return (
     <MotionWrapper>
-      <form
-        className="flex flex-col justify-center items-center mt-20 gap-4"
-        onSubmit={handleSubmit}
-      >
-        <input
-          type="text"
-          placeholder="Enter your name"
-          className="input input-bordered input-success w-full max-w-xs text-black text-2xl p-1 bg-white/80"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          required
-        />
-        <input
-          type="email"
-          placeholder="Enter your email"
-          className="input input-bordered input-success w-full max-w-xs text-black text-2xl p-1 bg-white/80"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-        <input
-          type="password"
-          placeholder="Create a password"
-          className="input input-bordered input-success w-full max-w-xs text-black text-2xl p-1 bg-white/80"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-        <button
-          type="submit"
-          className="btn bg-purple-900 text-2xl font-light w-full max-w-xs"
+      <div className="flex flex-col items-center">
+        <form
+          className="flex flex-col justify-center items-center mt-20 gap-4"
+          onSubmit={handleSubmit}
         >
-          Sign Up
-        </button>
+          <input
+            type="text"
+            placeholder="Enter your name"
+            className="input input-bordered input-success w-full max-w-xs text-black text-2xl p-1 bg-white/80"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+          />
+          <input
+            type="email"
+            placeholder="Enter your email"
+            className="input input-bordered input-success w-full max-w-xs text-black text-2xl p-1 bg-white/80"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+          <input
+            type="password"
+            placeholder="Create a password"
+            className="input input-bordered input-success w-full max-w-xs text-black text-2xl p-1 bg-white/80"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+          <button
+            type="submit"
+            className="btn bg-purple-900 text-2xl font-light w-full max-w-xs"
+          >
+            Sign Up
+          </button>
+        </form>
         <p>or</p>
-        <button className="btn " onClick={handleGoogleLogin}>
+        <button className="btn btn-success " onClick={handleGoogleLogin}>
           "Sign in with "
           <Image
             src="/Google.svg"
@@ -89,7 +91,7 @@ const Signup = () => {
             className="w-fit"
           />
         </button>
-      </form>
+      </div>
     </MotionWrapper>
   );
 };

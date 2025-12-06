@@ -79,7 +79,14 @@ const Nav = () => {
             className=" hover:bg-white/20 ml-2"
           />
         </Link>
-        {session && <p className={`${bounce} text-amber-600  text-2xl text-shadow-black font-bold `}>Welcome to your< br /> Dashboard {session.user.name}</p>}
+        {session && (
+          <p
+            className={`${bounce} text-amber-600  text-2xl text-shadow-black font-bold `}
+          >
+            Welcome to your
+            <br /> Dashboard {session.user.name}
+          </p>
+        )}
       </div>
 
       <div className="navbar-end hidden lg:flex">
@@ -99,9 +106,9 @@ const Nav = () => {
                 <summary>Get Started</summary>
                 <ul className="p-2 bg-base-100 w-40 z-1">
                   <li>
-                    <Form btnTitle="Login" style=" w-full text-left" />
+                    <Link href={"/login"}>Login</Link>
                   </li>
-
+                  
                   <li>
                     <Link href="/signup">Sign Up</Link>
                   </li>
