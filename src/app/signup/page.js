@@ -1,5 +1,6 @@
 "use client";
 import MotionWrapper from "@/components/MotionWrapper";
+import Image from "next/image";
 import { useState } from "react";
 
 const Signup = () => {
@@ -9,7 +10,6 @@ const Signup = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
 
     const res = await fetch("/api/auth/register", {
       method: "POST",
@@ -32,6 +32,15 @@ const Signup = () => {
     //redirect to home
     window.location.href = "/";
   };
+
+
+    const handleGoogleLogin = async (e) => {
+         setIsLoading(true);
+  
+     await new Promise((resolve) => setTimeout(resolve, 1200)); 
+  
+     signIn("google")
+    }
 
   return (
     <MotionWrapper>
@@ -68,6 +77,17 @@ const Signup = () => {
           className="btn bg-purple-900 text-2xl font-light w-full max-w-xs"
         >
           Sign Up
+        </button>
+        <p>or</p>
+        <button className="btn " onClick={handleGoogleLogin}>
+          "Sign in with "
+          <Image
+            src="/Google.svg"
+            alt="google image"
+            width={50}
+            height={50}
+            className="w-fit"
+          />
         </button>
       </form>
     </MotionWrapper>

@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 import { signIn } from "next-auth/react";
-
+import Image from 'next/image';
 
 const Form = ({ btnTitle, style }) => {
 
@@ -30,8 +30,6 @@ const handleLogin = async (e) => {
     password,
   });
 
-
-
   if (!res.error) {
     router.push("/dashboard");
   } else {
@@ -40,6 +38,14 @@ const handleLogin = async (e) => {
     alert("Login failed: Please verify your email or password");
   }
 }
+
+  const handleGoogleLogin = async (e) => {
+       setIsLoading(true);
+
+   await new Promise((resolve) => setTimeout(resolve, 1200)); 
+
+   signIn("google")
+  }
   return (
     <div>
       <button className={style} onClick={() => setIsOpen(true)}>
@@ -80,18 +86,31 @@ const handleLogin = async (e) => {
                   onChange={(e) => setPassword(e.target.value)}
                   required
                 />
-                <button
-                  type="submit"
-                  className="hover:text-purple-400 text-3xl font-thin font-stretch-10%"
-                >
-                  {isLoading ? (
-                    <div>
-                      <span className="loading loading-dots loading-xl"></span>
-                    </div>
-                  ) : (
-                    "Log in"
-                  )}
-                </button>
+                <div className="flex flex-col items-center">
+                  <button
+                    type="submit"
+                    className="hover:text-purple-400 text-3xl font-thin font-stretch-10%"
+                  >
+                    {isLoading ? (
+                      <div>
+                        <span className="loading loading-dots loading-xl"></span>
+                      </div>
+                    ) : (
+                      "Log in"
+                    )}
+                  </button>
+                  <p>or</p>
+                  <button className="btn " onClick={handleGoogleLogin}>
+                    "Sign in with "
+                    <Image
+                      src="/Google.svg"
+                      alt="google image"
+                      width={50}
+                      height={50}
+                      className='w-fit'
+                    />
+                  </button>
+                </div>
               </form>
             </motion.div>
           </motion.div>

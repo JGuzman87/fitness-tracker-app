@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Form from './Form';
 import { signOut } from "next-auth/react";
 import { useSession } from 'next-auth/react';
+import { useEffect, useState } from 'react';
 
 const Nav = () => {
 
@@ -12,9 +13,19 @@ const Nav = () => {
     signOut({ callbackUrl: '/'})
   }
 
+  const [bounce, setBounce ] = useState('animate-bounce')
+
+  useEffect(() => {
+    setTimeout(() => {
+      setBounce("animate-none");
+    }, 3000)
+    
+  }, [])
+
+
   return (
     <div className="navbar bg-base-100 shadow-sm">
-      <div className="md:navbar-start navbar-center flex gap-50 md:gap-0 ">
+      <div className="md:navbar-start navbar-center flex ">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
             <svg
@@ -40,13 +51,23 @@ const Nav = () => {
             <li>
               <Link href="/">Home</Link>
             </li>
-        {  session && <li>
-              <Link href="/dashboard">Dashboard</Link>
-            </li>}
-            { session && <li>
-              <Link href={'#'} onClick={handleClick}>Logout</Link> 
-            </li>}
-            {!session && <li><Link href={'/signup'}>Sign up</Link></li>}
+            {session && (
+              <li>
+                <Link href="/dashboard">Dashboard</Link>
+              </li>
+            )}
+            {session && (
+              <li>
+                <Link href={"#"} onClick={handleClick}>
+                  Logout
+                </Link>
+              </li>
+            )}
+            {!session && (
+              <li>
+                <Link href={"/signup"}>Sign up</Link>
+              </li>
+            )}
           </ul>
         </div>
         <Link href="/">
@@ -58,26 +79,35 @@ const Nav = () => {
             className=" hover:bg-white/20 ml-2"
           />
         </Link>
+        {session && <p className={`${bounce} text-amber-600  text-2xl text-shadow-black font-bold `}>Welcome to your< br /> Dashboard {session.user.name}</p>}
       </div>
 
       <div className="navbar-end hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
-       { session &&  <li>
-            <Link href="/dashboard">Dashboard</Link>
-          </li>}
-         <li>
-         { session ? (<Link href={'#'} onClick={handleClick}>Logout</Link> ) : (<details> 
-              <summary>Get Started</summary>
-              <ul className="p-2 bg-base-100 w-40 z-1">
-                <li>
-                  <Form btnTitle="Login" style=" w-full text-left" />
-                </li>
+          {session && (
+            <li>
+              <Link href="/dashboard">Dashboard</Link>
+            </li>
+          )}
+          <li>
+            {session ? (
+              <Link href={"#"} onClick={handleClick}>
+                Logout
+              </Link>
+            ) : (
+              <details>
+                <summary>Get Started</summary>
+                <ul className="p-2 bg-base-100 w-40 z-1">
+                  <li>
+                    <Form btnTitle="Login" style=" w-full text-left" />
+                  </li>
 
-                <li>
-                  <Link href="/signup">Sign Up</Link>
-                </li>
-              </ul>
-            </details>)}
+                  <li>
+                    <Link href="/signup">Sign Up</Link>
+                  </li>
+                </ul>
+              </details>
+            )}
           </li>
         </ul>
       </div>
