@@ -5,7 +5,6 @@ const WorkoutSchema = new mongoose.Schema(
     day: String,
     name: { type: String, required: true },
     weight: { type: Number, required: true },
-    date: { type: Date, default: Date.now },
   },
   { timestamps: true }
 );

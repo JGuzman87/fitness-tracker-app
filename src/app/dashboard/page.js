@@ -2,12 +2,15 @@
 import { useSession } from "next-auth/react";
 import MotionWrapper from "@/components/MotionWrapper";
 import Calendar from "@/components/Calendar";
-import WorkoutForm from "@/components/WorkoutForm";
 import { useModalStore } from "@/store/useModalStore";
 
 
 
 const DashBoard = () => {
+
+
+
+
 
   const openModal = useModalStore((state) => state.openModal);
  
@@ -17,6 +20,7 @@ const { data: session } = useSession();
 if (session) {
   console.log(session.user);
 }
+
   
   return (
     <MotionWrapper>
