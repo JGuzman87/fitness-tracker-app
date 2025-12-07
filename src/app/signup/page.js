@@ -56,7 +56,7 @@ const Signup = () => {
         >
           <input
             type="text"
-            placeholder="Enter your name"
+            placeholder="enter login name..."
             className="input input-bordered input-success w-full max-w-xs text-black text-2xl p-1 bg-white/80"
             value={name}
             onChange={(e) => setName(e.target.value)}
@@ -64,7 +64,7 @@ const Signup = () => {
           />
           <input
             type="email"
-            placeholder="Enter your email"
+            placeholder="enter email..."
             className="input input-bordered input-success w-full max-w-xs text-black text-2xl p-1 bg-white/80"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -72,7 +72,7 @@ const Signup = () => {
           />
           <input
             type="password"
-            placeholder="Create a password"
+            placeholder="create password..."
             className="input input-bordered input-success w-full max-w-xs text-black text-2xl p-1 bg-white/80"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
@@ -87,7 +87,7 @@ const Signup = () => {
         </form>
         <p>or</p>
         <button
-          className="btn btn-base-200 text-2xl font-thin  hover:text-white"
+          className="btn btn-base-200 text-2xl font-thin  hover:text-white max-w-xs transition delay-150 duration-300 ease-in-out hover:-translate-y-1 hover:scale-110"
           onClick={handleGoogleLogin}
         >
           Sign in with
