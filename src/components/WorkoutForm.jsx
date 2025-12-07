@@ -30,6 +30,7 @@ const WorkoutForm = () => {
     <form className="flex flex-col gap-2 p-2" onSubmit={handleSubmit}>
       <label htmlFor="calendar day">Calendar Day </label>
       <select
+        type="number"
         name="day"
         value={workoutData.day}
         onChange={handleChange}

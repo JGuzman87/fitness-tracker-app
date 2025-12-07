@@ -15,9 +15,15 @@ const Calendar = () => {
 
         getFetch();
         
+        const objArr = [
+          { name: 'jorge', age: 2 },
+          { name: 'joh', age: 88 },
+          { name: 'coco', age: 6 },
+          { name: 'nasty', age: 50 },
+        ];
+        
 
-   
-
+ 
       }, []);
 
 
