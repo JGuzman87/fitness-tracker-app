@@ -55,7 +55,7 @@ const Nav = () => {
                 <Link href="/">Home</Link>
               </li>
             )}
-            {session && (
+            {session && pathname !== '/dashboard' && (
               <li>
                 <Link href="/dashboard">Dashboard</Link>
               </li>
@@ -95,7 +95,7 @@ const Nav = () => {
 
       <div className="navbar-end hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
-          {session && (
+          {session && pathname !== '/dashboard' &&(
             <li>
               <Link href="/dashboard">Dashboard</Link>
             </li>
