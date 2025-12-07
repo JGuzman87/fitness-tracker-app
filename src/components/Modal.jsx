@@ -29,7 +29,7 @@ const Modal = () => {
               onClick={(e) => e.stopPropagation()}
             >
               {modalName === "login" && <LoginForm />}
-              {modalName === "workout" && <WorkoutForm />}
+              {modalName === "workout" && <WorkoutForm  />}
             </motion.div>
           </motion.div>
         )}

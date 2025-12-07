@@ -90,7 +90,7 @@ const Signup = () => {
           className="btn btn-base-200 text-2xl font-thin  hover:text-white max-w-xs transition delay-150 duration-300 ease-in-out hover:-translate-y-1 hover:scale-110"
           onClick={handleGoogleLogin}
         >
-          Sign in with
+          Signup in with
           <Image
             src="/Google.svg"
             alt="google image"

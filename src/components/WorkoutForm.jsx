@@ -1,8 +1,10 @@
 "use client";
 import { useState } from "react";
 import { useModalStore } from "@/store/useModalStore";
+import { useFetchStore } from "@/store/useFetchStore";
 const WorkoutForm = () => {
   const closeModal = useModalStore((state) => state.closeModal);
+  const postFetch = useFetchStore((state) => state.postFetch);
   const [workoutData, setWorkoutData] = useState({
     day: "",
     name: "",
@@ -18,15 +20,10 @@ const WorkoutForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const res = await fetch("/api/workouts", {
-      method: "POST",
-      body: JSON.stringify(workoutData),
-    });
-    const data = await res.json();
-
+  await postFetch(workoutData);
    
     closeModal();
-    console.log(data.day);
+  
   };
 
   return (
