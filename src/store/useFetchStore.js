@@ -1,7 +1,7 @@
 import { create } from "zustand";
 
 export const useFetchStore = create((set) => ({
-    data: [],
+    item: [],
     loading: false,
 
     postFetch: async (workouts) => {
@@ -15,7 +15,12 @@ export const useFetchStore = create((set) => ({
         console.log("failed to fetch");
         }
 
-        set({ data: await res.json()});
+       const data = await res.json();
+
+       set((state) => ({
+        item:[...state.item, data]
+       }));
+    
     },
 
     getFetch: async () => {
@@ -23,16 +28,24 @@ export const useFetchStore = create((set) => ({
         console.log(
         "FETCH CALLED"
         )
-        await new Promise((resolve) => setTimeout(resolve, 1200)); 
+                set({ loading: true });
+
           try{
           const res = await fetch("/api/workouts");
             if (!res.ok) {
-              
+              set({ loading: false})
               return console.log('failed to get');
             }
 
-            set({ data: await res.json()});
-       
+           const data = await res.json();
+
+  
+           set({
+            item: data,
+            loading: false
+           })
+
+           console.log("THIS IS THE ITEM",set.item)
           } catch (error) {
             console.error("Failed to fetch data:",error);
        

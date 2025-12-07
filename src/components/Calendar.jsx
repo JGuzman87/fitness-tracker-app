@@ -1,14 +1,12 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useFetchStore } from "@/store/useFetchStore";
 
 const Calendar = () => {
   //TODO: try to get data corresponding to the correct box depending on the day
-
-
   
     const getFetch = useFetchStore((state) => state.getFetch);
-    const data = useFetchStore((state) => state.data );
+    const item = useFetchStore((state) => state.item );
     const loading = useFetchStore((state) => state.loading);
 
     
@@ -17,15 +15,12 @@ const Calendar = () => {
 
         getFetch();
         
-        console.log("DATA FROM STORE:", data);
+
    
 
       }, []);
 
-      useEffect(() => {
-        console.log("STORE DATA UPDATED:", data);
-      }, [data]);
-    
+
 
   return (
     <>
@@ -37,8 +32,8 @@ const Calendar = () => {
             className="duration-300 ease-in bg-white shadow-2xl rounded-md p-2"
           >
             {i + 1}
-            {!loading &&  data &&
-              data.map((workouts) => <p key={workouts._id}>{workouts.name}</p>)}
+            {!loading &&  item &&
+              item.map((workouts, i) => <p key={i}>{workouts.name}</p>)}
           </div>
         ))}
       </div>

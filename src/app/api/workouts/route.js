@@ -12,7 +12,7 @@ export async function GET() {
     if (!session) {
       return Response.json({ error: "Not authenticated" }, { status: 401 });
     }
-console.log("SESSION USER ID:", session.user.id);
+
     const workouts = await Workouts.find({ userId: session.user.id });
     return Response.json(workouts);
   } catch (error) {
@@ -36,11 +36,9 @@ export async function POST(request) {
     const body = await request.json();
     body.userId = session.user.id; // 
 
-     const workouts = await Workouts.find({ userId: session.user.id });
 
-
-    await Workouts.create(body);
-    return Response.json(workouts);
+   const workout = await Workouts.create(body);
+    return Response.json(workout);
   } catch (error) {
     console.error("WORKOUTS POST ERROR:", error);
     return Response.json(
