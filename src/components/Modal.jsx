@@ -3,6 +3,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useModalStore } from "@/store/useModalStore";
 import LoginForm from "./LoginForm";
+import WorkoutForm from "./WorkoutForm";
 
 const Modal = () => {
   const { modalName, isOpen, closeModal } = useModalStore();
@@ -10,12 +11,10 @@ const Modal = () => {
   
   return (
     <>
-
-
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            className="fixed inset-0 bg-black/60 flex flex-col justify-center items-center z-50"
+            className="fixed inset-0 bg-black/60 backdrop-blur-xs flex flex-col justify-center items-center z-50"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -30,6 +29,7 @@ const Modal = () => {
               onClick={(e) => e.stopPropagation()}
             >
               {modalName === "login" && <LoginForm />}
+              {modalName === "workout" && <WorkoutForm />}
             </motion.div>
           </motion.div>
         )}
