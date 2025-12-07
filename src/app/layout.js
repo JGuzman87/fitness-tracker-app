@@ -2,7 +2,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Nav from "@/components/Nav";
 import SessionWrapper from "@/components/SessionWrapper";
-
+import Modal from "@/components/Modal";
 
 
 
@@ -31,7 +31,9 @@ export default function RootLayout({ children }) {
       >
         <SessionWrapper>
           <Nav />
+          
           {children}
+          <Modal />
         </SessionWrapper>
       </body>
     </html>

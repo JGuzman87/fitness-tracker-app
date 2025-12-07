@@ -22,7 +22,7 @@ const Nav = () => {
     
   }, [])
 
-  const path = usePathname();
+  const pathname = usePathname();
 
 
   return (
@@ -50,9 +50,11 @@ const Nav = () => {
             tabIndex="-1"
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
           >
-            <li>
-              <Link href="/">Home</Link>
-            </li>
+            {!session && (
+              <li>
+                <Link href="/">Home</Link>
+              </li>
+            )}
             {session && (
               <li>
                 <Link href="/dashboard">Dashboard</Link>
@@ -78,15 +80,15 @@ const Nav = () => {
             alt="fitness logo"
             width={150}
             height={150}
-            className=" hover:bg-white/20 ml-2 transition delay-150 duration-300 ease-in-out hover:-translate-y-1 hover:scale-110 rounded-2xl"
+            className=" bg-black/20 ml-2 transition delay-150 duration-300 ease-in-out hover:-translate-y-1 hover:scale-110 rounded-2xl"
           />
         </Link>
-        {session && path === '/dashboard' && (
+        {session && pathname === "/dashboard" && (
           <p
             className={`${bounce} text-amber-600  text-md text-shadow-black font-bold '`}
           >
-            Welcome<br /> to your
-            Dashboard <br/> {session.user.name}
+            Welcome
+            <br /> to your Dashboard <br /> {session.user.name}
           </p>
         )}
       </div>
@@ -107,13 +109,17 @@ const Nav = () => {
               <details>
                 <summary>Get Started</summary>
                 <ul className="p-2 bg-base-100 w-40 z-1">
-                  <li>
-                    <Link href={"/login"}>Login</Link>
-                  </li>
+                  {pathname !== "/login" && (
+                    <li>
+                      <Link href={"/login"}>Login</Link>
+                    </li>
+                  )}
 
-                  <li>
-                    <Link href="/signup">Sign Up</Link>
-                  </li>
+                  {pathname !== "/signup" && (
+                    <li>
+                      <Link href="/signup">Sign Up</Link>
+                    </li>
+                  )}
                 </ul>
               </details>
             )}
