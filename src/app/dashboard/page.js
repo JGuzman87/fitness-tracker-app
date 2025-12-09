@@ -26,8 +26,6 @@ if (session) {
     <MotionWrapper>
       {session && (
         <div className="flex flex-col gap-2 p-4">
-
-         <button className="btn btn-ghost w-xs" onClick={() => openModal('workout')}>Add Workout</button>
           <Calendar />
         </div>
       )}
