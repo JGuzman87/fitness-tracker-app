@@ -53,6 +53,9 @@ export const useFetchStore = create((set) => ({
         
         };
 
+      },
+
+       deleteFetch: async (id) => { 
       }
     
 

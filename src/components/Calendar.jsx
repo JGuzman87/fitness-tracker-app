@@ -29,6 +29,21 @@ const Calendar = () => {
  
       }, []);
 
+      const handleClick = () => {
+        if (!item) {
+          return;
+      } else {
+        return () => openModal('workout');
+      }
+    }
+
+    const handleDelete = (index) => {  
+     
+      console.log("DELETE CLICKED", index);
+
+
+    }
+
 
 
   return (
@@ -37,16 +52,21 @@ const Calendar = () => {
       <p className="text-center font-thin italic text-lg">Click on a tile to get started.</p>
       
       <div className=" grid md:grid-cols-7 md:grid-rows-4 gap-4 p-4 h-full overflow-y-auto  text-2xl text-black shadow-2xl bg-purple-500/20">
-        {Array.from({ length: 31 }).map((_, i) => (
+        {Array.from({ length: 31 }).map((_, index) => (
           <div
-            key={i}
+            key={index}
             className="duration-300 ease-in bg-white shadow-2xl rounded-md p-2"
-            onClick={() => openModal('workout')}
+            onClick={handleClick}
 
           >
-            {i + 1}
+            {index + 1}
             {!loading &&  item &&
-              item.map((workouts, i) => <p key={i}>{workouts.name}</p>)}
+              item.map((workouts, index) => 
+                <p key={index}>{workouts.name}</p>
+
+             
+              )}
+              {!loading &&  item && <button className="btn btn-xs mt-2" onClick={() => handleDelete(index)}>X</button>}
           </div>
         ))}
       </div>
