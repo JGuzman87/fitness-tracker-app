@@ -33,8 +33,8 @@ const Home = () => {
             </button>
           </div>
         ) : (
-          <div className="w-full h-50 flex flex-col justify-around items-center p-2 mt-20 bg-black/10 font-stretch-condensed rounded-xl  shadow-2xl text-3xl  font-light  ">
-            <p>
+          <div className="w-full flex flex-col justify-around items-center p-2 mt-20 bg-black/10 font-stretch-condensed rounded-xl  shadow-2xl text-3xl  font-light  ">
+            <p className="text-center">
               {`Welcome to your fitness tracker ${session.user.name}!  Begin adding your meals and workouts in your Dashboard`}
             </p>
             <button
