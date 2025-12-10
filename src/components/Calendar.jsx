@@ -53,7 +53,7 @@ const Calendar = () => {
         {Array.from({ length: 31 }).map((_, index) => (
           <div
             key={index}
-            className="duration-300 ease-in bg-white shadow-2xl rounded-md p-2"
+            className="duration-300 ease-in bg-white shadow-2xl  rounded-md p-2"
           >
             {index + 1}
             {!loading &&
@@ -61,13 +61,13 @@ const Calendar = () => {
               item
                 .filter((workouts) => Number(workouts.day) === index)
                 .map((workouts) => (
-                  <div key={workouts._id}>
+                  <div key={workouts._id} className="flex flex-col bg-purple-300/30 p-2 rounded-md mt-1 text-sm">
                     <ul>
                       <li>{workouts.name}</li>
                       <li>{workouts.weight} lbs</li>
                     </ul>
                     <button
-                      className="btn btn-xs mt-2"
+                      className="btn btn-error border-0 text-white"
                       onClick={() => deleteFetch(workouts._id)}
                     >
                       X
