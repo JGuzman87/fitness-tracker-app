@@ -17,7 +17,7 @@ export async function DELETE(_, { params }) {
       }
   
       
-
+// Delete the workout by ID and userId to make sure users can only delete their own workouts
 
     const deleteItem = await Workouts.findOneAndDelete({ _id: id, userId: userId });
     if (!deleteItem) {
