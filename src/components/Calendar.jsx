@@ -1,39 +1,31 @@
 "use client";
 import { useEffect } from "react";
 import { useFetchStore } from "@/store/useFetchStore";
-import { useModalStore } from '@/store/useModalStore';
+import { useModalStore } from "@/store/useModalStore";
 
 const Calendar = () => {
-  //TODO: try to get data corresponding to the correct box depending on the day
+  const getFetch = useFetchStore((state) => state.getFetch);
+  const item = useFetchStore((state) => state.item);
+  const loading = useFetchStore((state) => state.loading);
+  const openModal = useModalStore((state) => state.openModal);
+  const deleteFetch = useFetchStore((state) => state.deleteFetch);
+  const showSkeleton = useFetchStore((state) => state.showSkeleton);
+  const setShowSkeleton = useFetchStore((state) => state.setShowSkeleton);
+
+
   
-    const getFetch = useFetchStore((state) => state.getFetch);
-    const item = useFetchStore((state) => state.item );
-    const loading = useFetchStore((state) => state.loading);
-    const openModal = useModalStore((state) => state.openModal);
-    const deleteFetch = useFetchStore((state) => state.deleteFetch);
 
-    
+  useEffect(() => {
+      setShowSkeleton(true);
+      const timer = setTimeout(() => {
+        setShowSkeleton(false);
+      }, 1000);
+       getFetch();
+      return () => clearTimeout(timer);
+     
+    }, []);
 
-    
-
-      useEffect(() => {
-
-        getFetch();
-        
-
- 
-      }, []);
-
-      const handleClick = () => {
-        
-         
-    
-      
-    }
-
-
-
-
+  const skeleton = <span className="skeleton skeleton-text">Loading...</span>;
 
   return (
     <>
@@ -61,17 +53,26 @@ const Calendar = () => {
               item
                 .filter((workouts) => Number(workouts.day) === index)
                 .map((workouts) => (
-                  <div key={workouts._id} className="flex flex-col bg-purple-300/30 p-2 rounded-md mt-1 text-sm">
-                    <ul>
-                      <li>{workouts.name}</li>
-                      <li>{workouts.weight} lbs</li>
-                    </ul>
-                    <button
-                      className="btn btn-error border-0 text-white"
-                      onClick={() => deleteFetch(workouts._id)}
-                    >
-                      X
-                    </button>
+                  <div
+                    key={workouts._id}
+                    className="flex flex-col bg-purple-300/30 p-2 rounded-md mt-1 text-sm"
+                  >
+                    {showSkeleton ? (
+                      <p>{skeleton}</p>
+                    ) : (
+                      <>
+                        <ul>
+                          <li>{workouts.name}</li>
+                          <li>{workouts.weight} lbs</li>
+                        </ul>
+                        <button
+                          className="btn btn-error border-0 text-white"
+                          onClick={() => deleteFetch(workouts._id)}
+                        >
+                          X
+                        </button>
+                      </>
+                    )}
                   </div>
                 ))}
           </div>
@@ -79,6 +80,6 @@ const Calendar = () => {
       </div>
     </>
   );
-}
+};
 
 export default Calendar;
