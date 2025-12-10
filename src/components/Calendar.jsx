@@ -34,14 +34,14 @@ const Calendar = () => {
           Monthly Tracker
         </h2>
         <p className="text-center font-thin italic text-lg">
-          Click on a tile to get started.
+          Click on button below to get started.
         </p>
         <button className="btn" onClick={() => openModal("workout")}>
           Add Workout
         </button>
       </div>
 
-      <div className=" grid md:grid-cols-7 md:grid-rows-4 gap-4 p-4 h-full overflow-y-auto  text-2xl text-black shadow-2xl bg-purple-500/20">
+      <div className=" grid md:grid-cols-7 md:grid-rows-4 gap-2 p-2 overflow-y-auto  text-2xl text-black shadow-2xl bg-purple-500/20">
         {Array.from({ length: 31 }).map((_, index) => (
           <div
             key={index}
@@ -55,21 +55,21 @@ const Calendar = () => {
                 .map((workouts) => (
                   <div
                     key={workouts._id}
-                    className="flex flex-col bg-purple-300/30 p-2 rounded-md mt-1 text-sm"
+                    className="flex flex-col-reverse gap-2 bg-purple-300/30 p-2 rounded-md mt-1 text-sm"
                   >
                     {showSkeleton ? (
                       <p>{skeleton}</p>
                     ) : (
                       <>
-                        <ul>
+                        <ul >
                           <li>{workouts.name}</li>
                           <li>{workouts.weight} lbs</li>
                         </ul>
                         <button
-                          className="btn btn-error border-0 text-white"
+                          className="btn bg-red-700 hover:bg-red-900  self-end border-0 text-white"
                           onClick={() => deleteFetch(workouts._id)}
                         >
-                          X
+                          x
                         </button>
                       </>
                     )}

@@ -34,7 +34,7 @@ const WorkoutForm = () => {
         name="day"
         value={workoutData.day}
         onChange={handleChange}
-        className="p-2 rounded-md border border-gray-300 bg-white text-black"
+        className="p-2 rounded-md border border-gray-300 bg-white/50 text-black"
       >
         <option value="" className="text-white bg-black/10">
           -- Select a calenday day --
@@ -54,7 +54,7 @@ const WorkoutForm = () => {
         placeholder="Enter Workout Name"
         onChange={handleChange}
         value={workoutData.name}
-        className="border rounded-lg p-1"
+        className="border rounded-lg  p-1"
         required
       />
       <label htmlFor="weight">Weight (lbs):</label>
