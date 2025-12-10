@@ -20,23 +20,15 @@ const Calendar = () => {
 
         getFetch();
         
-        const objArr = [
-          { name: 'jorge', age: 2 },
-          { name: 'joh', age: 88 },
-          { name: 'coco', age: 6 },
-          { name: 'nasty', age: 50 },
-        ];
-        
 
  
       }, []);
 
       const handleClick = () => {
-        if (!item) {
-          return () => openModal("workout");
-    
         
-      }
+         
+    
+      
     }
 
 
@@ -45,32 +37,43 @@ const Calendar = () => {
 
   return (
     <>
-      <h2 className="text-3xl text-center font-stretch-40%">Monthly Tracker</h2>
-      <p className="text-center font-thin italic text-lg">
-        Click on a tile to get started.
-      </p>
+      <div className="flex flex-col items-center">
+        <h2 className="text-3xl text-center font-stretch-40%">
+          Monthly Tracker
+        </h2>
+        <p className="text-center font-thin italic text-lg">
+          Click on a tile to get started.
+        </p>
+        <button className="btn" onClick={() => openModal("workout")}>
+          Add Workout
+        </button>
+      </div>
 
       <div className=" grid md:grid-cols-7 md:grid-rows-4 gap-4 p-4 h-full overflow-y-auto  text-2xl text-black shadow-2xl bg-purple-500/20">
         {Array.from({ length: 31 }).map((_, index) => (
           <div
             key={index}
             className="duration-300 ease-in bg-white shadow-2xl rounded-md p-2"
-            onClick={handleClick}
           >
             {index + 1}
             {!loading &&
               item &&
-              item.map((workouts) => (
-                <div key={workouts._id}>
-                  <p>{workouts.name}</p>
+              item
+                .filter((workouts) => Number(workouts.day) === index)
+                .map((workouts) => (
+                  <div key={workouts._id}>
+                    <ul>
+                      <li>{workouts.name}</li>
+                      <li>{workouts.weight} lbs</li>
+                    </ul>
                     <button
-                className="btn btn-xs mt-2"
-                onClick={() => deleteFetch(workouts._id)}
-              >
-                X
-              </button>
-                </div>
-              ))}
+                      className="btn btn-xs mt-2"
+                      onClick={() => deleteFetch(workouts._id)}
+                    >
+                      X
+                    </button>
+                  </div>
+                ))}
           </div>
         ))}
       </div>

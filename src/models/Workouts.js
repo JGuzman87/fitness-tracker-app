@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const WorkoutSchema = new mongoose.Schema(
   {
-    day: String,
+    day: Number,
     name: { type: String, required: true },
     weight: { type: Number, required: true },
     userId: {
