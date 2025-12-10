@@ -56,7 +56,22 @@ export const useFetchStore = create((set) => ({
       },
 
        deleteFetch: async (id) => { 
-      }
+
+        console.log(id)
+        try{
+          const res = await fetch(`/api/workouts/${id}`, {
+            method: "DELETE",
+          });
+          if (res.ok) {
+            set((state) => ({
+              item: state.item.filter((workout) => workout._id !== id),
+            }));
+          }
+        } catch (error) {
+          console.error("Failed to delete workout:", error);  
+      };
+
+    }
     
 
     
