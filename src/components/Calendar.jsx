@@ -19,7 +19,7 @@ const Calendar = () => {
       setShowSkeleton(true);
       const timer = setTimeout(() => {
         setShowSkeleton(false);
-      }, 1000);
+      }, 800);
        getFetch();
       return () => clearTimeout(timer);
      
@@ -45,7 +45,7 @@ const Calendar = () => {
         {Array.from({ length: 31 }).map((_, index) => (
           <div
             key={index}
-            className="duration-300 ease-in bg-white shadow-2xl  rounded-md p-2"
+            className=" bg-white shadow-2xl  rounded-md p-2"
           >
             {index + 1}
             {!loading &&
@@ -55,18 +55,19 @@ const Calendar = () => {
                 .map((workouts) => (
                   <div
                     key={workouts._id}
-                    className="flex flex-col-reverse gap-2 bg-purple-300/30 p-2 rounded-md mt-1 text-sm"
+                    className="flex flex-col gap-2 bg-purple-300/30 p-2 rounded-md mt-1 text-sm"
                   >
                     {showSkeleton ? (
                       <p>{skeleton}</p>
                     ) : (
                       <>
                         <ul >
-                          <li>{workouts.name}</li>
-                          <li>{workouts.weight} lbs</li>
+                          <li className="font-bold">{workouts.name}</li>
+                          <li>Weight: {workouts.weight} lbs</li>
                         </ul>
                         <button
-                          className="btn bg-red-700 hover:bg-red-900  self-end border-0 text-white"
+                          type="button"
+                          className="w-5 rounded-md  bg-red-700 hover:bg-red-900  self-end border-0 text-white"
                           onClick={() => deleteFetch(workouts._id)}
                         >
                           x
