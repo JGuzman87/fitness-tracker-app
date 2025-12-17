@@ -2,6 +2,7 @@
 import { useEffect } from "react";
 import { useFetchStore } from "@/store/useFetchStore";
 import { useModalStore } from "@/store/useModalStore";
+import { motion } from "framer-motion";
 
 const Calendar = () => {
   const getFetch = useFetchStore((state) => state.getFetch);
@@ -36,9 +37,13 @@ const Calendar = () => {
         <p className="text-center font-thin italic text-lg">
           Click on button below to get started.
         </p>
-        <button className="btn" onClick={() => openModal("workout")}>
-          Add Workout
-        </button>
+        <motion.button 
+          className="btn hover:bg-purple-900 mt-2 mb-4" 
+          onClick={() => openModal("workout")}
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+        >Add Workout</motion.button>
+        
       </div>
 
       <div className=" grid md:grid-cols-7 md:grid-rows-4 gap-2 p-2 overflow-y-auto  text-2xl text-black shadow-2xl bg-purple-500/20">

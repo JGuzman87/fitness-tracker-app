@@ -1,6 +1,7 @@
 "use client";
 
 import MotionWrapper from '@/components/MotionWrapper';
+import { motion } from 'framer-motion';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { useModalStore } from '@/store/useModalStore';
@@ -25,12 +26,14 @@ const Home = () => {
               <br /> Where you can track your workouts reps and log your meals
               to get calories and protein data.
             </p>
-            <button
-              className="btn text-2xl transition delay-150 duration-200 ease-in-out hover:-translate-y-1 hover:scale-110 hover:bg-purple-900 font-thin"
+            <motion.button
+              className="btn text-2xl hover:bg-purple-900 mt-4"
               onClick={() => openModal("login")}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
             >
               Long in{" "}
-            </button>
+            </motion.button>
           </div>
         ) : (
           <div className="w-full flex flex-col justify-around items-center p-2 mt-20 bg-black/10 font-stretch-condensed rounded-xl  shadow-2xl text-3xl  font-light  ">
